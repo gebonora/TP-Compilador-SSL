@@ -11,5 +11,6 @@ void leer(char*a);
 void escribir(char*a);
 char* operar(char op,char*a,char*b);
 char* invertir(char*a);
-void chequearId(char*a);
+void errorIdRepetido(char*a);
+void erorrIdNoDeclarado(char*a);
 #endif

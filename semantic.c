@@ -27,10 +27,8 @@ void asignar(char*a,char*b){
 }
 
 void declarar(char*a){
-	if (buscarEnDiccionario(a) != 1){
-		colocarId(a);
-		generar("Declare",a,"Integer","");
-	} else {printf("Línea #%d: Error semántico: identificador %s ya declarado\n",yylineno,a); nErroresSemanticos++;}
+	colocarId(a);
+	generar("Declare",a,"Integer","");
 }
 
 char* crearTemporal(){
@@ -79,10 +77,15 @@ char* invertir(char*a){
 	return temporal;
 }
 
-void chequearId(char* a){
-	if (buscarEnDiccionario(a) != 1){
-		printf("Línea #%d: Error semántico: identificador %s no fue declarado\n",yylineno,a); nErroresSemanticos++;
-	}
+
+void errorIdRepetido(char*a){
+	printf("Línea #%d: Error semántico: identificador %s ya declarado\n",yylineno,a);
+	nErroresSemanticos++;
 }
+
+void erorrIdNoDeclarado(char*a){
+	printf("Línea #%d: Error semántico: identificador %s no fue declarado\n",yylineno,a);
+	nErroresSemanticos++;
+}	
 	
 

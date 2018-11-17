@@ -1,0 +1,15 @@
+Load rtlib,
+Declare total,Integer
+Declare var1,Integer
+Declare var2,Integer
+línea #6: Error semántico: identificador var2 ya declarado
+línea #7: Error léxico: cadena desconocida: ##@
+Read var1,Integer
+Read var2,Integer
+línea #10: Error léxico: constante con sufijo inválido: 32z
+línea #10: Error semántico: identificador var5 NO declarado
+línea #11: Error léxico: identificador inválido: var2#2@1
+línea #12: Error semántico: identificador escritura NO declarado
+Stop ,
+Errores de compilación
+Errors sintácticos: 0 - Errores léxicos: 3 - Errores Semánticos: 3

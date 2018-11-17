@@ -30,7 +30,7 @@ todo			: {comenzar();}programa { if (yynerrs || yylexerrs) YYABORT; else YYACCEP
 programa             	: PROGRAMA VARIABLES variable CODIGO codigo FIN {terminar();}
                      	;
 
-variable             	: variable DEFINIR IDENTIFICADOR '.' {declarar($3);} 
+variable             	: variable DEFINIR IDENTIFICADOR '.' {if (buscarEnDiccionario($3)!=1){declarar($3);}else {errorIdRepetido($3);YYERROR;};}
 			| %empty 
 			| error '.'
                      	;
@@ -42,11 +42,14 @@ codigo               	: codigo sentencia '.'
 	
 sentencia            	: LEER '('listaIdentificadores')' 
                      	| ESCRIBIR '('listaExpresiones')' 
-                     	| IDENTIFICADOR ASIGNACION expresion {asignar($3,$1);}
+                     	| identificador ASIGNACION expresion {asignar($3,$1);}
                      	;
 
-listaIdentificadores 	: IDENTIFICADOR {leer($1);}
-                     	|  listaIdentificadores ',' IDENTIFICADOR {leer($2);}
+identificador		: IDENTIFICADOR {if (buscarEnDiccionario($1)!=1){ erorrIdNoDeclarado($1);YYERROR;}; $$=$1;}
+			;
+
+listaIdentificadores 	: identificador {leer($1);}
+                     	|  listaIdentificadores ',' identificador {leer($2);}
                     	;
 
 listaExpresiones     	: expresion {escribir($1);}
@@ -57,7 +60,7 @@ expresion            	: expresion '+' expresion {$$=operar('+',$1,$3);}
                      	| expresion '-' expresion {$$=operar('-',$1,$3);}
 			| expresion '*' expresion {$$=operar('*',$1,$3);}
                      	| expresion '/' expresion {$$=operar('/',$1,$3);}
-			| IDENTIFICADOR {chequearId($1); $$=$1;}
+			| identificador 
 			| CONSTANTE
                         | '-' expresion %prec NEG {$$=invertir($2);}
 			| '('expresion')' {$$=$2;}
