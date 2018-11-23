@@ -14,7 +14,6 @@ void generar(char*operador,char*a,char*b,char*c){
 }
 
 void comenzar(){
-	inicializar();
 	generar("Load","rtlib","","");
 }
 

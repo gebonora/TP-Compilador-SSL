@@ -31,10 +31,4 @@ void colocarId(char* a){
 	}
 }
 
-void inicializar(){
-	colocarId("leer");
-	colocarId("fin");
-	colocarId("codigo");
-	colocarId("variables");
-}
 

@@ -15,9 +15,7 @@ Integrantes:
 
 # include <stdio.h>
 # include "parser.h"
-# include "scanner.h"
-# include "semantic.h"
-# include "symbols.h"
+
 
 int nErroresSemanticos = 0;
 int yylexerrs = 0;

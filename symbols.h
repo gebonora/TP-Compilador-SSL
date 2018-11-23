@@ -3,5 +3,4 @@
 
 int buscarEnDiccionario(char* a);
 void colocarId(char* a);
-void inicializar();
 #endif
